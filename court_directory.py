@@ -269,7 +269,8 @@ def display_attorney(row):
             if row['PhotoID'] is None: 
                 st.image(jcpao_logo, width=400)
             else:
-                headshot_path = "JCPAO_headshots/"+row['PhotoID']
+                # headshot_path = "JCPAO_headshots/"+row['PhotoID']
+                headshot_path = "JCPAO_headshots/" + (str(row['PhotoID']) if pd.notna(row['PhotoID']) else "")
                 attorney_headshot = load_photo(headshot_path)
                 st.image(attorney_headshot, width=400)
 
