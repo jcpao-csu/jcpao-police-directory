@@ -83,7 +83,7 @@ def reset_filters():
 with st.sidebar:
     # Select options: position / unit / location / birthday month 
     st.title("Law Enforcement Agencies of Jackson County, Missouri")
-    st.write("***JCPAO Police Directory 🚔***")
+    st.write("***JCPAO Police Directory*** 🚔")
     st.divider()
     st.markdown(
         "This directory provides information on all active attorneys and Executive Staff in the Jackson County Prosecuting Attorney's Office. "
