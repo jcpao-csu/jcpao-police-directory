@@ -9,14 +9,14 @@ from connect_data import log_user
 jcpao_logo = Path("assets/logo/jcpao_logo_500x500.png")
 
 st.set_page_config(
-    page_title="JCPAO Court Directory", # court-view only
+    page_title="JCPAO Police Directory", # court-view only
     page_icon=jcpao_logo, # cloudinary.CloudinaryImage('jcpao_logo_200x200').build_url()
     layout="wide", # "centered" or "wide"
     initial_sidebar_state="auto", # "expanded" / "auto" / "collapsed"
     menu_items={
         # 'Get Help': 'https://www.extremelycoolapp.com/help',
         'Report a bug': "mailto:ujcho@jacksongov.org", # To report a bug, please email
-        'About': "The JCPAO Portal was built by Joseph Cho and the Crime Strategies Unit (CSU) of the Jackson County Prosecuting Attorney's Office."
+        'About': "The JCPAO Police Directory was built by Joseph Cho and the Crime Strategies Unit (CSU) of the Jackson County Prosecuting Attorney's Office."
     }
 )
 
@@ -43,8 +43,24 @@ def verify_attempt():
 
     # Check verification
     # TODO - add security of checking if the @jacksongov.org email actually exists/is active in the database prior to verification
+
+    # Police agency email suffixes
+    email_addresses = [
+        "@courts.mo.gov", # Missouri State Courts
+        "@jacksongov.org", # Jackson County (Sheriff)
+        "@kcpd.org", # Kansas City Police Department
+        "@indepmo.org", # Independence, MO
+        "@bluespringsmo.gov", # Blue Springs, MO
+        "@grandview.org", # Grandview, MO
+        "@cityofls.net", # Lee's Summit, MO
+        "@raytownpolice.org", # Raytown, MO
+        "@sugar-creek.mo.us", # Sugar Creek, MO
+        "@greenwoodmopd.com", # Greenwood, MO
+        "@grainvalleypolice.org", # Grain Valley, MO
+        "@cityofoakgrove.com", # Oak Grove, MO
+    ]
     
-    if (email.endswith("@courts.mo.gov") or email.endswith("@jacksongov.org")) and code == security_code:
+    if any(email.endswith(suffix) for suffix in email_addresses) and code == security_code:
         log_user(email) # also track ip address? [st.context.ip_address]
         success_message = st.success(f"Verification successful: *{st.session_state['verified_email']}*")
         time.sleep(2)
@@ -91,7 +107,7 @@ def display_portal():
             width="stretch",
             height="content"
         ):
-            st.markdown("<h3 style='text-align: center; color: #0047ab;'>JCPAO Court Directory</h3>", unsafe_allow_html=True)
+            st.markdown("<h3 style='text-align: center; color: #0047ab;'>JCPAO Police Directory</h3>", unsafe_allow_html=True)
             st.markdown("<div style='text-align: center; font-size: small; font-weight: bold; color: #0047ab; '>Please verify the following information to access the directory</div>", unsafe_allow_html=True)
             st.divider()
 
@@ -139,7 +155,7 @@ else: # st.session_state["verified"] == TRUE
 
     # Display APA Directory 
     directory_pages = [
-        st.Page("court_directory.py", title="Court-view Directory", icon=":material/account_balance:"), # 🏛️
+        st.Page("court_directory.py", title="Police-view Directory", icon=":material/account_balance:"), # 🏛️
     ]
 
     court_pg = st.navigation(directory_pages, position="top")

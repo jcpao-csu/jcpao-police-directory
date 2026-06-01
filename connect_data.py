@@ -167,7 +167,7 @@ def log_user(
 
             with conn.cursor() as cur:
                 cur.execute(
-                    "INSERT INTO courts_log (user_email) VALUES (%s)",
+                    "INSERT INTO police_log (user_email) VALUES (%s)",
                     (email_address, ),
                 )
                 conn.commit()
@@ -179,7 +179,7 @@ def log_user(
             with _connection.connection() as conn:
                 with conn.cursor() as cur:
                     cur.execute(
-                        "INSERT INTO court_log (user_email) VALUES (%s)",
+                        "INSERT INTO police_log (user_email) VALUES (%s)",
                         (email_address),
                     )
                     conn.commit()

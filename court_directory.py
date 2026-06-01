@@ -82,12 +82,12 @@ def reset_filters():
 
 with st.sidebar:
     # Select options: position / unit / location / birthday month 
-    st.title("16th Circuit Court of Jackson County, Missouri")
-    st.write("***JCPAO Court Directory***")
+    st.title("Law Enforcement Agencies of Jackson County, Missouri")
+    st.write("***JCPAO Police Directory***")
     st.divider()
     st.markdown(
         "This directory provides information on all active attorneys and Executive Staff in the Jackson County Prosecuting Attorney's Office. "
-        "Please reach out to [Joseph Cho](mailto:ujcho@jacksongov.org) with any questions or suggestions on how to improve the court directory!"
+        "Please reach out to [Joseph Cho](mailto:ujcho@jacksongov.org) with any questions or suggestions on how to improve the police directory!"
     )
     st.divider()
     st.selectbox(
@@ -303,7 +303,7 @@ def display_attorney(row):
 
 
 # --- Display INTERNAL Directory ---
-st.markdown("<h1 style='text-align: center; color: black;'>JCPAO Court Directory</h1>", unsafe_allow_html=True)
+st.markdown("<h1 style='text-align: center; color: black;'>JCPAO Police Directory</h1>", unsafe_allow_html=True)
 st.divider()
 
 def main_directory():
