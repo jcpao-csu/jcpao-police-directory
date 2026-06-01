@@ -107,7 +107,7 @@ def display_portal():
             width="stretch",
             height="content"
         ):
-            st.markdown("<h3 style='text-align: center; color: #0047ab;'>JCPAO Police Directory</h3>", unsafe_allow_html=True)
+            st.markdown("<h3 style='text-align: center; color: #0047ab;'>JCPAO Police Directory 🚔</h3>", unsafe_allow_html=True)
             st.markdown("<div style='text-align: center; font-size: small; font-weight: bold; color: #0047ab; '>Please verify the following information to access the directory</div>", unsafe_allow_html=True)
             st.divider()
 
