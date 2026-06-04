@@ -277,7 +277,10 @@ def display_attorney(row):
         with col2:
 
             # Employee Name
-            st.header(f"{row['Full Name']}")
+            if row['Preferred Name']: # If preferred name exists
+                st.header(f"{row['Preferred Name'].strip()} {row['Last Name'].strip()}")
+            else:
+                st.header(f"{row['First Name'].strip()} {row['Last Name'].strip()}")
 
             # Job Title
             st.subheader(f"{row['Job Title']}")
