@@ -9,7 +9,7 @@ import streamlit as st
 from pathlib import Path 
 import pandas as pd
 
-from connect_data import STAFF_VIEW
+from connect_data2 import STAFF_VIEW
 from photo import load_photo
 
 

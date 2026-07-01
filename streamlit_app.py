@@ -3,7 +3,7 @@ from pathlib import Path
 import time
 import base64
 
-from connect_data import log_user
+from connect_data2 import log_user
 
 # --- Configure Streamlit page settings --- 
 
