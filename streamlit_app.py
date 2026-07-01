@@ -1,6 +1,7 @@
 import streamlit as st
 from pathlib import Path
 import time
+import base64
 
 from connect_data import log_user
 
@@ -20,10 +21,15 @@ st.set_page_config(
     }
 )
 
-# --- JCPAO Streamlit page logo --- 
+# --- JCPAO Streamlit page logo ---
 st.logo(jcpao_logo, size="large", link="https://www.jacksoncountyprosecutor.com")
 
-# --- Connect to database --- 
+@st.cache_data
+def get_logo_base64(path: Path) -> str:
+    """Base64-encode the logo so it can be centered via custom HTML."""
+    return base64.b64encode(path.read_bytes()).decode()
+
+# --- Connect to database ---
 
 # --- Initialize st.session_state --- 
 if "verified" not in st.session_state:
@@ -80,7 +86,7 @@ def display_portal():
     st.markdown(
         """
         <style>
-        .space { margin-top: 200px; }
+        .space { margin-top: 100px; }
         </style>
         <div class="space"></div>
         """,
@@ -89,16 +95,26 @@ def display_portal():
 
     # Display form
     cols = st.columns(
-        3, 
+        3,
         gap=None,
-        vertical_alignment="center",
+        vertical_alignment="top",
         border=False,
         width="stretch"
     )
 
     with cols[1]:
-        
-        # Form to verify user 
+
+        # Centered JCPAO logo
+        st.markdown(
+            f"""
+            <div style='text-align: center; margin-bottom: 36px;'>
+                <img src='data:image/png;base64,{get_logo_base64(jcpao_logo)}' width='200'>
+            </div>
+            """,
+            unsafe_allow_html=True
+        )
+
+        # Form to verify user
         with st.form(
             "verify_user",
             clear_on_submit=False,
@@ -107,9 +123,8 @@ def display_portal():
             width="stretch",
             height="content"
         ):
-            st.markdown("<h3 style='text-align: center; color: #0047ab;'>JCPAO Police Directory 🚔</h3>", unsafe_allow_html=True)
-            st.markdown("<div style='text-align: center; font-size: small; font-weight: bold; color: #0047ab; '>Please verify the following information to access the directory</div>", unsafe_allow_html=True)
-            st.divider()
+            st.markdown("<div style='text-align: center; font-size: 1.75rem; font-weight: bold; color: #0047ab;'>JCPAO Police Directory 🚔</div>", unsafe_allow_html=True)
+            st.markdown("<div style='text-align: center; font-size: small; color: #0047ab; margin-bottom: 20px;'>Please verify the following information to access the directory</div>", unsafe_allow_html=True)
 
             # Email
             verified_email = st.text_input(
